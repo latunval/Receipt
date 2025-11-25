@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-section">
+            <h1>Receipt Generator</h1>
+            <form id="receiptForm">
+                <div class="form-group">
+                    <label for="storeName">Store Name:</label>
+                    <input type="text" id="storeName" value="TARGET" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="storeLocation">Store Location:</label>
+                    <input type="text" id="storeLocation" value="NEW YORK" required>
+                </div>
+                
+                <div class="items-section">
+                    <h3>Items</h3>
+                    <div id="itemsList">
+                        <div class="item-row">
+                            <input type="text" class="item-name" placeholder="Item name" required>
+                            <input type="number" class="item-price" placeholder="0.00" step="0.01" min="0" required>
+                            <button type="button" class="remove-item">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" id="addItem">Add Item</button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="receiptDate">Date:</label>
+                    <input type="date" id="receiptDate" required>
+                </div>
+                
+                <button type="submit">Generate Receipt</button>
+            </form>
+        </div>
+        
+        <div class="receipt-section">
+            <div id="receipt" class="receipt">
+                <div class="receipt-header">
+                    <div class="store-brand">
+                        <div class="store-logo">
+                            <div class="bullseye">
+                                <div class="outer-ring"></div>
+                                <div class="inner-circle"></div>
+                            </div>
+                        </div>
+                        <span class="store-name">TARGET</span>
+                    </div>
+                    <div class="store-location">NEW YORK</div>
+                </div>
+                
+                <div class="receipt-divider"></div>
+                
+                <div class="receipt-items" id="receiptItems">
+                    <!-- Items will be populated here -->
+                </div>
+                
+                <div class="receipt-divider"></div>
+                
+                <div class="receipt-total">
+                    <span class="total-label">TOTAL</span>
+                    <span class="total-amount" id="totalAmount">$0.00</span>
+                </div>
+                
+                <div class="receipt-date" id="receiptDate">
+                    <!-- Date will be populated here -->
+                </div>
+            </div>
+            
+            <button id="printReceipt">Print Receipt</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

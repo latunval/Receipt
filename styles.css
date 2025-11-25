@@ -1,0 +1,434 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.form-section {
+    flex: 1;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-section h1 {
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 24px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.items-section {
+    margin: 30px 0;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 4px;
+}
+
+.items-section h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.item-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.item-name {
+    flex: 2;
+}
+
+.item-price {
+    flex: 1;
+}
+
+.remove-item {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.remove-item:hover {
+    background: #c82333;
+}
+
+#addItem {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#addItem:hover {
+    background: #218838;
+}
+
+button[type="submit"] {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background: #0056b3;
+}
+
+.receipt-section {
+    flex: 1;
+}
+
+.receipt {
+    background: #f8f8f8;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    max-width: 300px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    font-weight: 400;
+}
+
+.receipt-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.store-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.store-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bullseye {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.outer-ring {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 7px solid #000;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.inner-circle {
+    width: 20px;
+    height: 20px;
+    background-color: #000;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.store-name {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial Black', 'Arial', sans-serif;
+}
+
+.store-location {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+.receipt-divider {
+    border-top: 2px solid #333;
+    margin: 20px 0;
+}
+
+.receipt-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+.item-description {
+    flex: 1;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.item-amount {
+    margin-left: 20px;
+    white-space: nowrap;
+}
+
+.receipt-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 20px 0;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+.receipt-date {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 30px;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+#printReceipt {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#printReceipt:hover {
+    background: #545b62;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .form-section {
+        padding: 20px;
+    }
+    
+    .form-section h1 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .item-row {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .item-name {
+        flex: 1;
+        min-width: 200px;
+    }
+    
+    .item-price {
+        flex: 0 0 80px;
+    }
+    
+    .remove-item {
+        flex: 0 0 auto;
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+    
+    .receipt {
+        max-width: 100%;
+        padding: 20px;
+        margin: 0;
+    }
+    
+    .bullseye {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .outer-ring {
+        width: 32px;
+        height: 32px;
+        border-width: 3px;
+    }
+    
+    .inner-circle {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .store-name {
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+    
+    .store-location {
+        font-size: 14px;
+    }
+    
+    .receipt-item {
+        font-size: 13px;
+    }
+    
+    .receipt-total {
+        font-size: 16px;
+    }
+    
+    .receipt-date {
+        font-size: 14px;
+    }
+    
+    #printReceipt {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-section {
+        padding: 15px;
+    }
+    
+    .items-section {
+        padding: 15px;
+        margin: 20px 0;
+    }
+    
+    .item-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .item-name,
+    .item-price {
+        flex: none;
+        margin-bottom: 8px;
+    }
+    
+    .remove-item {
+        align-self: flex-start;
+        margin-bottom: 10px;
+    }
+    
+    .receipt {
+        padding: 15px;
+    }
+    
+    .store-brand {
+        gap: 6px;
+    }
+    
+    .bullseye {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .outer-ring {
+        width: 28px;
+        height: 28px;
+        border-width: 3px;
+    }
+    
+    .inner-circle {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .store-name {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+    
+    .receipt-item {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .item-description {
+        line-height: 1.3;
+        word-break: break-word;
+    }
+    
+    .item-amount {
+        margin-left: 10px;
+    }
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    
+    .receipt, .receipt * {
+        visibility: visible;
+    }
+    
+    .receipt {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+        border: none;
+    }
+}
