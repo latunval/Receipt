@@ -8,12 +8,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('receiptDate').value = today;
     
-    // Add sample items
-    addSampleItems();
+    // Load saved data or add sample items
+    loadFromLocalStorage();
     
     // Add item functionality
     addItemBtn.addEventListener('click', function() {
         addItemRow();
+        saveToLocalStorage();
+        updateReceipt();
     });
     
     // Remove item functionality
@@ -21,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target.classList.contains('remove-item')) {
             if (itemsList.children.length > 1) {
                 e.target.parentElement.remove();
+                saveToLocalStorage();
                 updateReceipt();
             }
         }
@@ -28,12 +31,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update receipt on input changes
     form.addEventListener('input', function() {
+        saveToLocalStorage();
         updateReceipt();
     });
     
     // Form submission
     form.addEventListener('submit', function(e) {
         e.preventDefault();
+        saveToLocalStorage();
         updateReceipt();
     });
     
@@ -106,6 +111,80 @@ document.addEventListener('DOMContentLoaded', function() {
             const formattedDate = `${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}/${date.getFullYear()}`;
             document.querySelector('.receipt-date').textContent = formattedDate;
         }
+    }
+    
+    // LocalStorage functions
+    function saveToLocalStorage() {
+        const formData = {
+            storeName: document.getElementById('storeName').value,
+            storeLocation: document.getElementById('storeLocation').value,
+            receiptDate: document.getElementById('receiptDate').value,
+            items: []
+        };
+        
+        const itemRows = document.querySelectorAll('.item-row');
+        itemRows.forEach(row => {
+            const nameInput = row.querySelector('.item-name');
+            const priceInput = row.querySelector('.item-price');
+            if (nameInput.value || priceInput.value) {
+                formData.items.push({
+                    name: nameInput.value,
+                    price: priceInput.value
+                });
+            }
+        });
+        
+        // Save current data to history array
+        let receiptHistory = JSON.parse(localStorage.getItem('receiptHistory') || '[]');
+        receiptHistory.push({
+            ...formData,
+            timestamp: new Date().toISOString()
+        });
+        
+        // Keep only last 10 receipts
+        if (receiptHistory.length > 10) {
+            receiptHistory = receiptHistory.slice(-10);
+        }
+        
+        localStorage.setItem('receiptHistory', JSON.stringify(receiptHistory));
+        localStorage.setItem('currentReceipt', JSON.stringify(formData));
+    }
+    
+    function loadFromLocalStorage() {
+        const savedData = localStorage.getItem('currentReceipt');
+        
+        if (savedData) {
+            const formData = JSON.parse(savedData);
+            
+            // Restore form fields
+            document.getElementById('storeName').value = formData.storeName || 'TARGET';
+            document.getElementById('storeLocation').value = formData.storeLocation || 'NEW YORK';
+            if (formData.receiptDate) {
+                document.getElementById('receiptDate').value = formData.receiptDate;
+            }
+            
+            // Clear existing items and restore saved items
+            itemsList.innerHTML = '';
+            if (formData.items && formData.items.length > 0) {
+                formData.items.forEach(item => {
+                    addItemRow(item.name, item.price);
+                });
+            } else {
+                addSampleItems();
+            }
+        } else {
+            // No saved data, use sample items
+            addSampleItems();
+        }
+    }
+    
+    function getReceiptHistory() {
+        return JSON.parse(localStorage.getItem('receiptHistory') || '[]');
+    }
+    
+    function getLatestReceipt() {
+        const history = getReceiptHistory();
+        return history.length > 0 ? history[history.length - 1] : null;
     }
     
     // Initial receipt update
