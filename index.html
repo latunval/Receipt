@@ -45,33 +45,94 @@
         <div class="receipt-section">
             <div id="receipt" class="receipt">
                 <div class="receipt-header">
-                    <div class="store-brand">
-                        <div class="store-logo">
-                            <div class="bullseye">
-                                <div class="outer-ring"></div>
-                                <div class="inner-circle"></div>
-                            </div>
+                    <div class="store-logo">
+                        <div class="bullseye">
+                            <div class="outer-ring"></div>
+                            <div class="middle-ring"></div>
+                            <div class="inner-circle"></div>
                         </div>
-                        <span class="store-name">TARGET</span>
                     </div>
-                    <div class="store-location">NEW YORK</div>
+                    <div class="store-name">TARGET</div>
+                    <div class="store-info" id="storeInfo">STORE #T-1017, 123 BROADWAY, NEW YORK, NY</div>
+                    <div class="receipt-datetime">
+                        <div class="receipt-date-line" id="receiptDateLine">DATE: 11/26/2025</div>
+                        <div class="receipt-time" id="receiptTime">TIME: 11:15 AM</div>
+                    </div>
                 </div>
-                
-                <div class="receipt-divider"></div>
                 
                 <div class="receipt-items" id="receiptItems">
                     <!-- Items will be populated here -->
                 </div>
                 
-                <div class="receipt-divider"></div>
-                
-                <div class="receipt-total">
-                    <span class="total-label">TOTAL</span>
-                    <span class="total-amount" id="totalAmount">$0.00</span>
-                </div>
-                
-                <div class="receipt-date" id="receiptDate">
-                    <!-- Date will be populated here -->
+                <div class="receipt-footer">
+                    <div class="receipt-subtotal">
+                        <span class="subtotal-label">SUBTOTAL</span>
+                        <span class="subtotal-amount" id="subtotalAmount">$1740.00</span>
+                        <span class="tax-amount" id="taxAmount">$178.00</span>
+                    </div>
+                    <div class="receipt-total">
+                        <span class="total-label">TOTAL</span>
+                        <span class="total-amount" id="totalAmount">$1845.50</span>
+                    </div>
+                    <div class="payment-method" id="paymentMethod">VISA</div>
+                    <div class="barcode">
+                        <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0" y="0" width="2" height="40" fill="black"/>
+                            <rect x="4" y="0" width="1" height="40" fill="black"/>
+                            <rect x="7" y="0" width="3" height="40" fill="black"/>
+                            <rect x="12" y="0" width="1" height="40" fill="black"/>
+                            <rect x="15" y="0" width="2" height="40" fill="black"/>
+                            <rect x="19" y="0" width="1" height="40" fill="black"/>
+                            <rect x="22" y="0" width="3" height="40" fill="black"/>
+                            <rect x="27" y="0" width="2" height="40" fill="black"/>
+                            <rect x="31" y="0" width="1" height="40" fill="black"/>
+                            <rect x="34" y="0" width="2" height="40" fill="black"/>
+                            <rect x="38" y="0" width="3" height="40" fill="black"/>
+                            <rect x="43" y="0" width="1" height="40" fill="black"/>
+                            <rect x="46" y="0" width="2" height="40" fill="black"/>
+                            <rect x="50" y="0" width="1" height="40" fill="black"/>
+                            <rect x="53" y="0" width="3" height="40" fill="black"/>
+                            <rect x="58" y="0" width="2" height="40" fill="black"/>
+                            <rect x="62" y="0" width="1" height="40" fill="black"/>
+                            <rect x="65" y="0" width="2" height="40" fill="black"/>
+                            <rect x="69" y="0" width="3" height="40" fill="black"/>
+                            <rect x="74" y="0" width="1" height="40" fill="black"/>
+                            <rect x="77" y="0" width="2" height="40" fill="black"/>
+                            <rect x="81" y="0" width="1" height="40" fill="black"/>
+                            <rect x="84" y="0" width="3" height="40" fill="black"/>
+                            <rect x="89" y="0" width="2" height="40" fill="black"/>
+                            <rect x="93" y="0" width="1" height="40" fill="black"/>
+                            <rect x="96" y="0" width="2" height="40" fill="black"/>
+                            <rect x="100" y="0" width="3" height="40" fill="black"/>
+                            <rect x="105" y="0" width="1" height="40" fill="black"/>
+                            <rect x="108" y="0" width="2" height="40" fill="black"/>
+                            <rect x="112" y="0" width="1" height="40" fill="black"/>
+                            <rect x="115" y="0" width="3" height="40" fill="black"/>
+                            <rect x="120" y="0" width="2" height="40" fill="black"/>
+                            <rect x="124" y="0" width="1" height="40" fill="black"/>
+                            <rect x="127" y="0" width="2" height="40" fill="black"/>
+                            <rect x="131" y="0" width="3" height="40" fill="black"/>
+                            <rect x="136" y="0" width="1" height="40" fill="black"/>
+                            <rect x="139" y="0" width="2" height="40" fill="black"/>
+                            <rect x="143" y="0" width="1" height="40" fill="black"/>
+                            <rect x="146" y="0" width="3" height="40" fill="black"/>
+                            <rect x="151" y="0" width="2" height="40" fill="black"/>
+                            <rect x="155" y="0" width="1" height="40" fill="black"/>
+                            <rect x="158" y="0" width="2" height="40" fill="black"/>
+                            <rect x="162" y="0" width="3" height="40" fill="black"/>
+                            <rect x="167" y="0" width="1" height="40" fill="black"/>
+                            <rect x="170" y="0" width="2" height="40" fill="black"/>
+                            <rect x="174" y="0" width="1" height="40" fill="black"/>
+                            <rect x="177" y="0" width="3" height="40" fill="black"/>
+                            <rect x="182" y="0" width="2" height="40" fill="black"/>
+                            <rect x="186" y="0" width="1" height="40" fill="black"/>
+                            <rect x="189" y="0" width="2" height="40" fill="black"/>
+                            <rect x="193" y="0" width="3" height="40" fill="black"/>
+                            <rect x="198" y="0" width="2" height="40" fill="black"/>
+                        </svg>
+                    </div>
+                    <div class="barcode-number">0 836555 896381</div>
+                    <div class="redcard-message">SAVE BIG WITH REDCARD</div>
                 </div>
             </div>
             

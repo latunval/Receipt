@@ -62,10 +62,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Clear existing items first
         itemsList.innerHTML = '';
         
-        // Add sample items from the receipt image
-        addItemRow('DOVE CREAM SERUM', '100.00');
-        addItemRow('BLUE BUFFALO DRY DOG FOOD', '80.00');
-        addItemRow('BASIL HAYDEN WHISKEY', '68.00');
+        // Add sample items from the Target receipt image
+        addItemRow('FIVE TRAIL WHISKEY', '500.00');
+        addItemRow('DOVE CREAM SERUM', '200.00');
+        addItemRow('BARMEN 1873', '250.00');
+        addItemRow('GREENIES CANINE TREATS (PETCO)', '0.00');
+        addItemRow('RUFFINO WINE', '180.00');
+        addItemRow('RUFFINO WINE', '200.00');
+        addItemRow('ABSOLUT AND KALMETICS', '210.00');
     }
     
     function updateReceipt() {
@@ -75,41 +79,63 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Update store info
         document.querySelector('.store-name').textContent = storeName;
-        document.querySelector('.store-location').textContent = storeLocation;
+        document.getElementById('storeInfo').textContent = `STORE #T-1017, 123 BROADWAY, ${storeLocation}, NY`;
         
         // Update items
         const receiptItems = document.getElementById('receiptItems');
         receiptItems.innerHTML = '';
         
-        let total = 0;
+        let subtotal = 0;
         const itemRows = document.querySelectorAll('.item-row');
         
         itemRows.forEach(row => {
             const nameInput = row.querySelector('.item-name');
             const priceInput = row.querySelector('.item-price');
             
-            if (nameInput.value && priceInput.value) {
-                const price = parseFloat(priceInput.value);
-                total += price;
+            if (nameInput.value && priceInput.value !== '') {
+                const price = parseFloat(priceInput.value) || 0;
+                subtotal += price;
                 
                 const receiptItem = document.createElement('div');
                 receiptItem.className = 'receipt-item';
+                
+                // Format price display
+                let priceDisplay;
+                if (price === 0) {
+                    priceDisplay = 'OO';
+                } else {
+                    priceDisplay = '$' + price.toFixed(2);
+                }
+                
                 receiptItem.innerHTML = `
                     <div class="item-description">${nameInput.value.toUpperCase()}</div>
-                    <div class="item-amount">$${price.toFixed(2)}</div>
+                    <div class="item-amount">${priceDisplay}</div>
                 `;
                 receiptItems.appendChild(receiptItem);
             }
         });
         
-        // Update total
+        // Calculate tax (approximately 10.23% based on the receipt)
+        const tax = subtotal * 0.1023;
+        const total = subtotal + tax;
+        
+        // Update subtotal, tax, and total
+        document.getElementById('subtotalAmount').textContent = `$${subtotal.toFixed(2)}`;
+        document.getElementById('taxAmount').textContent = `$${tax.toFixed(2)}`;
         document.getElementById('totalAmount').textContent = `$${total.toFixed(2)}`;
         
-        // Update date
+        // Update date and time
         if (receiptDate) {
-            const date = new Date(receiptDate);
+            const date = new Date(receiptDate + 'T11:15:00');
             const formattedDate = `${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}/${date.getFullYear()}`;
-            document.querySelector('.receipt-date').textContent = formattedDate;
+            const hours = date.getHours();
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const displayHours = hours % 12 || 12;
+            const formattedTime = `${displayHours}:${minutes} ${ampm}`;
+            
+            document.getElementById('receiptDateLine').textContent = `DATE: ${formattedDate}`;
+            document.getElementById('receiptTime').textContent = `TIME: ${formattedTime}`;
         }
     }
     
