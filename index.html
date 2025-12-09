@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receipt Generator</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="theme.css">
 </head>
 <body>
     <div class="container">
+        <nav style="margin-bottom: 20px;">
+            <a href="walmart.html">Walmart Generator</a> | 
+            <a href="about.html">About</a>
+        </nav>
+        <!-- <button class="theme-toggle" onclick="toggleTheme()">🌙 Toggle Theme</button> -->
         <div class="form-section">
             <h1>Receipt Generator</h1>
             <form id="receiptForm">
@@ -38,7 +44,10 @@
                     <input type="date" id="receiptDate" required>
                 </div>
                 
-                <button type="submit">Generate Receipt</button>
+                <div class="button-group">
+                    <button type="submit">Generate Receipt</button>
+                    <button type="button" id="generateRandom">Generate Random Receipt</button>
+                </div>
             </form>
         </div>
         
@@ -140,6 +149,7 @@
         </div>
     </div>
     
+    <script src="utils.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

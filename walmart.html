@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walmart Receipt Generator</title>
+    <link rel="stylesheet" href="walmart-styles.css">
+</head>
+<body>
+    <div class="container">
+        <nav style="margin-bottom: 20px;">
+            <a href="index.html">Target Generator</a> | 
+            <a href="about.html">About</a>
+        </nav>
+        
+        <div class="form-section">
+            <h1>Walmart Receipt Generator</h1>
+            <form id="walmartForm">
+                <div class="form-group">
+                    <label for="storeNumber">Store Number:</label>
+                    <input type="text" id="storeNumber" value="2711" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="storeLocation">Store Location:</label>
+                    <input type="text" id="storeLocation" value="BENTONVILLE, AR 72716" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="managerName">Manager:</label>
+                    <input type="text" id="managerName" value="JOHN SMITH" required>
+                </div>
+                
+                <div class="items-section">
+                    <h3>Items</h3>
+                    <div id="itemsList">
+                        <div class="item-row">
+                            <input type="text" class="item-name" placeholder="Item name" required>
+                            <input type="text" class="item-code" placeholder="Item code" required>
+                            <input type="number" class="item-price" placeholder="0.00" step="0.01" min="0" required>
+                            <button type="button" class="remove-item">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" id="addItem">Add Item</button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="receiptDate">Date:</label>
+                    <input type="date" id="receiptDate" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="receiptTime">Time:</label>
+                    <input type="time" id="receiptTime" required>
+                </div>
+                
+                <div class="button-group">
+                    <button type="submit">Generate Receipt</button>
+                    <button type="button" id="generateRandom">Generate Random Receipt</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="receipt-section">
+            <div id="receipt" class="walmart-receipt">
+                <div class="receipt-header">
+                    <div class="walmart-logo-container">
+                        <span class="walmart-text">Walmart</span>
+                        <svg class="walmart-spark" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Walmart spark symbol -->
+                            <g fill="#ffc220">
+                                <!-- Top ray -->
+                                <rect x="11" y="0" width="2" height="8" rx="1"/>
+                                <!-- Top-right ray -->
+                                <rect x="16.5" y="2.5" width="2" height="8" rx="1" transform="rotate(45 17.5 6.5)"/>
+                                <!-- Right ray -->
+                                <rect x="16" y="11" width="8" height="2" rx="1"/>
+                                <!-- Bottom-right ray -->
+                                <rect x="16.5" y="13.5" width="2" height="8" rx="1" transform="rotate(135 17.5 17.5)"/>
+                                <!-- Bottom ray -->
+                                <rect x="11" y="16" width="2" height="8" rx="1"/>
+                                <!-- Bottom-left ray -->
+                                <rect x="5.5" y="13.5" width="2" height="8" rx="1" transform="rotate(225 6.5 17.5)"/>
+                                <!-- Left ray -->
+                                <rect x="0" y="11" width="8" height="2" rx="1"/>
+                                <!-- Top-left ray -->
+                                <rect x="5.5" y="2.5" width="2" height="8" rx="1" transform="rotate(315 6.5 6.5)"/>
+                                <!-- Center circle -->
+                                <circle cx="12" cy="12" r="3"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="save-money">Save money. Live better.</div>
+                    <div class="store-info">
+                        <div>MANAGER JOHN SMITH</div>
+                        <div id="storeAddress">2711 BENTONVILLE, AR 72716</div>
+                        <div id="storePhone">ST# 2711 OP# 00123 TE# 45 TR# 06789</div>
+                    </div>
+                </div>
+                
+                <div class="dashed-line"></div>
+                <div class="dashed-line"></div>
+                
+                <div class="receipt-items" id="receiptItems">
+                    <!-- Items will be populated here -->
+                </div>
+                
+                <div class="receipt-footer">
+                    <div class="totals-section">
+                        <div class="total-line">
+                            <span>SUBTOTAL</span>
+                            <span id="subtotal">$0.00</span>
+                        </div>
+                        <div class="total-line">
+                            <span>TAX 1 6.500%</span>
+                            <span id="tax">$0.00</span>
+                        </div>
+                        <div class="total-line bold">
+                            <span>TOTAL</span>
+                            <span id="total">$0.00</span>
+                        </div>
+                        <div class="total-line">
+                            <span id="paymentType">DEBIT TEND</span>
+                            <span id="paymentAmount">$0.00</span>
+                        </div>
+                        <div class="total-line">
+                            <span>CHANGE DUE</span>
+                            <span>$0.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="receipt-meta">
+                        <div id="receiptDateTime"># ITEMS SOLD 0</div>
+                        <div id="transactionId">TC# 1234 5678 9012 3456 7890</div>
+                    </div>
+                    
+                    <div class="qr-code">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <!-- QR Code pattern -->
+                            <rect x="0" y="0" width="100" height="100" fill="white"/>
+                            <!-- Corner squares -->
+                            <rect x="5" y="5" width="25" height="25" fill="black"/>
+                            <rect x="8" y="8" width="19" height="19" fill="white"/>
+                            <rect x="11" y="11" width="13" height="13" fill="black"/>
+                            
+                            <rect x="70" y="5" width="25" height="25" fill="black"/>
+                            <rect x="73" y="8" width="19" height="19" fill="white"/>
+                            <rect x="76" y="11" width="13" height="13" fill="black"/>
+                            
+                            <rect x="5" y="70" width="25" height="25" fill="black"/>
+                            <rect x="8" y="73" width="19" height="19" fill="white"/>
+                            <rect x="11" y="76" width="13" height="13" fill="black"/>
+                            
+                            <!-- Data pattern -->
+                            <rect x="35" y="8" width="3" height="3" fill="black"/>
+                            <rect x="41" y="8" width="3" height="3" fill="black"/>
+                            <rect x="47" y="8" width="3" height="3" fill="black"/>
+                            <rect x="53" y="8" width="3" height="3" fill="black"/>
+                            <rect x="59" y="8" width="3" height="3" fill="black"/>
+                            <rect x="65" y="8" width="3" height="3" fill="black"/>
+                            
+                            <rect x="8" y="35" width="3" height="3" fill="black"/>
+                            <rect x="14" y="35" width="3" height="3" fill="black"/>
+                            <rect x="20" y="35" width="3" height="3" fill="black"/>
+                            <rect x="26" y="35" width="3" height="3" fill="black"/>
+                            
+                            <rect x="35" y="35" width="3" height="3" fill="black"/>
+                            <rect x="41" y="35" width="3" height="3" fill="black"/>
+                            <rect x="47" y="35" width="3" height="3" fill="black"/>
+                            <rect x="53" y="35" width="3" height="3" fill="black"/>
+                            <rect x="59" y="35" width="3" height="3" fill="black"/>
+                            <rect x="65" y="35" width="3" height="3" fill="black"/>
+                            <rect x="71" y="35" width="3" height="3" fill="black"/>
+                            <rect x="77" y="35" width="3" height="3" fill="black"/>
+                            <rect x="83" y="35" width="3" height="3" fill="black"/>
+                            <rect x="89" y="35" width="3" height="3" fill="black"/>
+                            
+                            <rect x="35" y="41" width="3" height="3" fill="black"/>
+                            <rect x="47" y="41" width="3" height="3" fill="black"/>
+                            <rect x="59" y="41" width="3" height="3" fill="black"/>
+                            <rect x="71" y="41" width="3" height="3" fill="black"/>
+                            <rect x="83" y="41" width="3" height="3" fill="black"/>
+                            
+                            <rect x="35" y="47" width="3" height="3" fill="black"/>
+                            <rect x="41" y="47" width="3" height="3" fill="black"/>
+                            <rect x="53" y="47" width="3" height="3" fill="black"/>
+                            <rect x="65" y="47" width="3" height="3" fill="black"/>
+                            <rect x="77" y="47" width="3" height="3" fill="black"/>
+                            <rect x="89" y="47" width="3" height="3" fill="black"/>
+                            
+                            <rect x="35" y="53" width="3" height="3" fill="black"/>
+                            <rect x="47" y="53" width="3" height="3" fill="black"/>
+                            <rect x="59" y="53" width="3" height="3" fill="black"/>
+                            <rect x="71" y="53" width="3" height="3" fill="black"/>
+                            <rect x="83" y="53" width="3" height="3" fill="black"/>
+                            
+                            <rect x="35" y="59" width="3" height="3" fill="black"/>
+                            <rect x="41" y="59" width="3" height="3" fill="black"/>
+                            <rect x="53" y="59" width="3" height="3" fill="black"/>
+                            <rect x="65" y="59" width="3" height="3" fill="black"/>
+                            <rect x="77" y="59" width="3" height="3" fill="black"/>
+                            <rect x="89" y="59" width="3" height="3" fill="black"/>
+                            
+                            <rect x="35" y="65" width="3" height="3" fill="black"/>
+                            <rect x="47" y="65" width="3" height="3" fill="black"/>
+                            <rect x="59" y="65" width="3" height="3" fill="black"/>
+                            <rect x="71" y="65" width="3" height="3" fill="black"/>
+                            <rect x="83" y="65" width="3" height="3" fill="black"/>
+                            
+                            <rect x="35" y="71" width="3" height="3" fill="black"/>
+                            <rect x="41" y="71" width="3" height="3" fill="black"/>
+                            <rect x="47" y="71" width="3" height="3" fill="black"/>
+                            <rect x="53" y="71" width="3" height="3" fill="black"/>
+                            <rect x="59" y="71" width="3" height="3" fill="black"/>
+                            <rect x="65" y="71" width="3" height="3" fill="black"/>
+                            <rect x="71" y="71" width="3" height="3" fill="black"/>
+                            <rect x="77" y="71" width="3" height="3" fill="black"/>
+                            <rect x="83" y="71" width="3" height="3" fill="black"/>
+                            <rect x="89" y="71" width="3" height="3" fill="black"/>
+                            
+                            <rect x="35" y="77" width="3" height="3" fill="black"/>
+                            <rect x="47" y="77" width="3" height="3" fill="black"/>
+                            <rect x="59" y="77" width="3" height="3" fill="black"/>
+                            <rect x="71" y="77" width="3" height="3" fill="black"/>
+                            <rect x="83" y="77" width="3" height="3" fill="black"/>
+                            
+                            <rect x="35" y="83" width="3" height="3" fill="black"/>
+                            <rect x="41" y="83" width="3" height="3" fill="black"/>
+                            <rect x="47" y="83" width="3" height="3" fill="black"/>
+                            <rect x="53" y="83" width="3" height="3" fill="black"/>
+                            <rect x="59" y="83" width="3" height="3" fill="black"/>
+                            <rect x="65" y="83" width="3" height="3" fill="black"/>
+                            <rect x="71" y="83" width="3" height="3" fill="black"/>
+                            <rect x="77" y="83" width="3" height="3" fill="black"/>
+                            <rect x="83" y="83" width="3" height="3" fill="black"/>
+                            <rect x="89" y="83" width="3" height="3" fill="black"/>
+                            
+                            <rect x="35" y="89" width="3" height="3" fill="black"/>
+                            <rect x="47" y="89" width="3" height="3" fill="black"/>
+                            <rect x="59" y="89" width="3" height="3" fill="black"/>
+                            <rect x="71" y="89" width="3" height="3" fill="black"/>
+                            <rect x="83" y="89" width="3" height="3" fill="black"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="barcode">
+                        <svg viewBox="0 0 250 50" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Start guard -->
+                            <rect x="5" y="0" width="2" height="50" fill="black"/>
+                            <rect x="9" y="0" width="2" height="50" fill="black"/>
+                            
+                            <!-- Data bars with varied widths -->
+                            <rect x="15" y="0" width="1" height="50" fill="black"/>
+                            <rect x="18" y="0" width="3" height="50" fill="black"/>
+                            <rect x="23" y="0" width="2" height="50" fill="black"/>
+                            <rect x="27" y="0" width="1" height="50" fill="black"/>
+                            <rect x="30" y="0" width="2" height="50" fill="black"/>
+                            <rect x="34" y="0" width="4" height="50" fill="black"/>
+                            <rect x="40" y="0" width="1" height="50" fill="black"/>
+                            <rect x="43" y="0" width="2" height="50" fill="black"/>
+                            <rect x="47" y="0" width="3" height="50" fill="black"/>
+                            <rect x="52" y="0" width="1" height="50" fill="black"/>
+                            <rect x="55" y="0" width="2" height="50" fill="black"/>
+                            <rect x="59" y="0" width="1" height="50" fill="black"/>
+                            <rect x="62" y="0" width="4" height="50" fill="black"/>
+                            <rect x="68" y="0" width="2" height="50" fill="black"/>
+                            <rect x="72" y="0" width="1" height="50" fill="black"/>
+                            <rect x="75" y="0" width="3" height="50" fill="black"/>
+                            <rect x="80" y="0" width="2" height="50" fill="black"/>
+                            <rect x="84" y="0" width="1" height="50" fill="black"/>
+                            
+                            <!-- Center guard -->
+                            <rect x="90" y="0" width="2" height="50" fill="black"/>
+                            <rect x="94" y="0" width="2" height="50" fill="black"/>
+                            
+                            <!-- More data bars -->
+                            <rect x="100" y="0" width="3" height="50" fill="black"/>
+                            <rect x="105" y="0" width="1" height="50" fill="black"/>
+                            <rect x="108" y="0" width="2" height="50" fill="black"/>
+                            <rect x="112" y="0" width="4" height="50" fill="black"/>
+                            <rect x="118" y="0" width="1" height="50" fill="black"/>
+                            <rect x="121" y="0" width="2" height="50" fill="black"/>
+                            <rect x="125" y="0" width="1" height="50" fill="black"/>
+                            <rect x="128" y="0" width="3" height="50" fill="black"/>
+                            <rect x="133" y="0" width="2" height="50" fill="black"/>
+                            <rect x="137" y="0" width="1" height="50" fill="black"/>
+                            <rect x="140" y="0" width="4" height="50" fill="black"/>
+                            <rect x="146" y="0" width="2" height="50" fill="black"/>
+                            <rect x="150" y="0" width="1" height="50" fill="black"/>
+                            <rect x="153" y="0" width="3" height="50" fill="black"/>
+                            <rect x="158" y="0" width="1" height="50" fill="black"/>
+                            <rect x="161" y="0" width="2" height="50" fill="black"/>
+                            <rect x="165" y="0" width="4" height="50" fill="black"/>
+                            <rect x="171" y="0" width="1" height="50" fill="black"/>
+                            <rect x="174" y="0" width="3" height="50" fill="black"/>
+                            <rect x="179" y="0" width="2" height="50" fill="black"/>
+                            
+                            <!-- End guard -->
+                            <rect x="185" y="0" width="2" height="50" fill="black"/>
+                            <rect x="189" y="0" width="2" height="50" fill="black"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="footer-message">
+                        <p>12/08/25 14:23:45</p>
+                        <p>CUSTOMER COPY</p>
+                        <p>IMPORTANT: RETAIN THIS RECEIPT</p>
+                        <p>FOR WARRANTY AND RETURN PURPOSES</p>
+                        <p>RETURN POLICY ON BACK</p>
+                        <div class="walmart-url">walmart.com</div>
+                        <div class="survey-info">
+                            <p>Tell us about your visit</p>
+                            <p>Complete a short survey for a</p>
+                            <p>chance to win a $1000 gift card</p>
+                            <p>Survey Code: WM2711-0123-4567</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="printReceipt">Print Receipt</button>
+        </div>
+    </div>
+    
+    <script src="walmart-script.js"></script>
+</body>
+</html>

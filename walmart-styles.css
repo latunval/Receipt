@@ -1,0 +1,343 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+}
+
+.form-section {
+    flex: 1;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-section h1 {
+    color: #004c91;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.items-section h3 {
+    color: #004c91;
+    margin-bottom: 15px;
+}
+
+.item-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.item-row input {
+    flex: 1;
+}
+
+.item-code {
+    max-width: 120px;
+}
+
+.item-price {
+    max-width: 100px;
+}
+
+.remove-item {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#addItem {
+    background: #004c91;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button[type="submit"],
+#generateRandom {
+    background: #ffc220;
+    color: #004c91;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    flex: 1;
+}
+
+#generateRandom {
+    background: #004c91;
+    color: white;
+}
+
+button[type="submit"]:hover,
+#generateRandom:hover {
+    opacity: 0.9;
+}
+
+.receipt-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.walmart-receipt {
+    background: white;
+    padding: 20px 15px;
+        font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 10px;
+    line-height: 1.3;
+    width: 500px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    color: #000;
+    letter-spacing: 0.3px;
+}
+
+.receipt-header {
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.walmart-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3px;
+    gap: 6px;
+}
+
+.walmart-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #004c91;  
+      font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+}
+
+.walmart-spark {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.save-money {
+    font-size: 8px;
+    color: #004c91;
+    margin-bottom: 8px;
+    font-weight: normal;
+}
+
+.store-info {
+    font-size: 9px;
+    line-height: 1.4;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+    font-weight: normal;
+}
+
+.store-info div {
+    margin-bottom: 2px;
+}
+
+.dashed-line {
+    border-top: 1px dashed #000;
+    margin: 8px 0;
+}
+
+.receipt-items {
+    margin-bottom: 10px;
+}
+
+.receipt-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1px;
+    font-size: 9px;
+    line-height: 1.3;
+}
+
+.item-details {
+    flex: 1;
+    padding-right: 10px;
+}
+
+.item-code {
+    font-size: 8px;
+    color: #555;
+    margin-top: 1px;
+}
+
+.totals-section {
+    padding-top: 8px;
+    margin-bottom: 10px;
+    border-top: 1px solid #000;
+}
+
+.total-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2px;
+    font-size: 9px;
+    line-height: 1.4;
+}
+
+.total-line.bold {
+    font-weight: bold;
+    font-size: 10px;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    padding: 2px 0;
+    margin: 3px 0;
+}
+
+.receipt-meta {
+    text-align: center;
+    font-size: 8px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.receipt-meta div {
+    margin-bottom: 1px;
+}
+
+.qr-code {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.qr-code svg {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #ccc;
+}
+
+.barcode {
+    text-align: center;
+    margin: 12px 0 8px 0;
+}
+
+.barcode svg {
+    width: 180px;
+    height: 35px;
+    display: block;
+    margin: 0 auto;
+}
+
+.footer-message {
+    text-align: center;
+    font-size: 7px;
+    line-height: 1.4;
+}
+
+.footer-message p {
+    margin-bottom: 1px;
+}
+
+.walmart-url {
+    font-weight: bold;
+    color: #004c91;
+    margin: 8px 0;
+    font-size: 9px;
+}
+
+.survey-info {
+    border-top: 1px dashed #000;
+    padding-top: 8px;
+    margin-top: 8px;
+    font-size: 7px;
+    line-height: 1.3;
+}
+
+.survey-info p {
+    margin-bottom: 1px;
+}
+
+#printReceipt {
+    background: #004c91;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto 0;
+    display: block;
+}
+
+#printReceipt:hover {
+    background: #003a73;
+}
+
+nav a {
+    color: #004c91;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .walmart-receipt {
+        max-width: 100%;
+    }
+}

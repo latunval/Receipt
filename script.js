@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const addItemBtn = document.getElementById('addItem');
     const itemsList = document.getElementById('itemsList');
     const printBtn = document.getElementById('printReceipt');
+    const generateRandomBtn = document.getElementById('generateRandom');
     
     // Set today's date as default
     const today = new Date().toISOString().split('T')[0];
@@ -10,6 +11,49 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Load saved data or add sample items
     loadFromLocalStorage();
+    
+    // Generate Random Receipt functionality
+    generateRandomBtn.addEventListener('click', async function() {
+        try {
+            const response = await fetch('items-data.json');
+            const data = await response.json();
+            
+            // Clear existing items
+            itemsList.innerHTML = '';
+            
+            // Get random number of items (5-12 items)
+            const numItems = Math.floor(Math.random() * 8) + 5;
+            const allItems = [];
+            
+            // Flatten all items from all categories
+            data.target_items.forEach(category => {
+                category.items.forEach(item => {
+                    allItems.push({
+                        name: item.name,
+                        price: item.price,
+                        category: category.category
+                    });
+                });
+            });
+            
+            // Shuffle and select random items
+            const shuffled = allItems.sort(() => 0.5 - Math.random());
+            const selectedItems = shuffled.slice(0, numItems);
+            
+            // Add selected items to form
+            selectedItems.forEach(item => {
+                addItemRow(item.name, item.price);
+            });
+            
+            // Save and update receipt
+            saveToLocalStorage();
+            updateReceipt();
+            
+        } catch (error) {
+            console.error('Error loading items:', error);
+            alert('Failed to load items. Please make sure items-data.json exists.');
+        }
+    });
     
     // Add item functionality
     addItemBtn.addEventListener('click', function() {

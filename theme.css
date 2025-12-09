@@ -1,0 +1,26 @@
+/* Theme styles */
+:root {
+    --primary-color: #cc0000;
+    --secondary-color: #ffffff;
+    --accent-color: #f0f0f0;
+}
+
+.dark-theme {
+    --primary-color: #ff6b6b;
+    --secondary-color: #2c2c2c;
+    --accent-color: #404040;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

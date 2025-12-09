@@ -1,0 +1,208 @@
+{
+  "target_items": [
+    {
+      "category": "Groceries",
+      "items": [
+        {
+          "name": "Market Pantry Whole Milk",
+          "price": 102.99
+        },
+        {
+          "name": "Good & Gather Rotisserie Chicken",
+          "price": 105.49
+        },
+        {
+          "name": "Nature Valley Granola Bars",
+          "price": 108.75
+        },
+        {
+          "name": "Coca-Cola 12-Pack",
+          "price": 101.25
+        },
+        {
+          "name": "Barilla Spaghetti Pasta",
+          "price": 104.50
+        },
+        {
+          "name": "Oreos Original Cookies",
+          "price": 106.99
+        }
+      ]
+    },
+    {
+      "category": "Household Essentials",
+      "items": [
+        {
+          "name": "Bounty Paper Towels",
+          "price": 109.99
+        },
+        {
+          "name": "Charmin Ultra Soft Tissue",
+          "price": 113.49
+        },
+        {
+          "name": "Clorox Disinfecting Wipes",
+          "price": 107.25
+        },
+        {
+          "name": "Dawn Dish Soap",
+          "price": 101.75
+        },
+        {
+          "name": "Febreze Air Freshener",
+          "price": 105.99
+        }
+      ]
+    },
+    {
+      "category": "Personal Care",
+      "items": [
+        {
+          "name": "Head & Shoulders Shampoo",
+          "price": 112.50
+        },
+        {
+          "name": "Colgate Total Toothpaste",
+          "price": 103.25
+        },
+        {
+          "name": "Gillette Fusion Razor",
+          "price": 118.99
+        },
+        {
+          "name": "Vaseline Body Lotion",
+          "price": 106.49
+        },
+        {
+          "name": "Old Spice Deodorant",
+          "price": 101.99
+        }
+      ]
+    },
+    {
+      "category": "Electronics",
+      "items": [
+        {
+          "name": "Apple AirPods",
+          "price": 159.99
+        },
+        {
+          "name": "Samsung 55-inch Smart TV",
+          "price": 559.99
+        },
+        {
+          "name": "Nintendo Switch Console",
+          "price": 309.99
+        },
+        {
+          "name": "Sony Bluetooth Speaker",
+          "price": 139.99
+        },
+        {
+          "name": "Anker Power Bank",
+          "price": 104.99
+        }
+      ]
+    },
+    {
+      "category": "Home & Kitchen",
+      "items": [
+        {
+          "name": "Threshold Throw Blanket",
+          "price": 115.49
+        },
+        {
+          "name": "Room Essentials Storage Bin",
+          "price": 102.25
+        },
+        {
+          "name": "Brita Water Filter Pitcher",
+          "price": 108.99
+        },
+        {
+          "name": "Keurig K-Classic Coffee Maker",
+          "price": 129.99
+        },
+        {
+          "name": "T-fal Nonstick Cookware Set",
+          "price": 144.99
+        }
+      ]
+    },
+    {
+      "category": "Clothing",
+      "items": [
+        {
+          "name": "Hanes Men's T-Shirts",
+          "price": 103.49
+        },
+        {
+          "name": "Wild Fable Women's Jeans",
+          "price": 117.99
+        },
+        {
+          "name": "Cat & Jack Kids' Hoodie",
+          "price": 101.25
+        },
+        {
+          "name": "All In Motion Sportswear",
+          "price": 122.50
+        },
+        {
+          "name": "A New Day Women's Sandals",
+          "price": 106.75
+        }
+      ]
+    },
+    {
+      "category": "Baby",
+      "items": [
+        {
+          "name": "Pampers Swaddlers Diapers",
+          "price": 128.99
+        },
+        {
+          "name": "Similac Infant Formula",
+          "price": 155.49
+        },
+        {
+          "name": "Huggies Baby Wipes",
+          "price": 104.25
+        },
+        {
+          "name": "Graco Baby Stroller",
+          "price": 199.99
+        },
+        {
+          "name": "Aveeno Baby Lotion",
+          "price": 102.49
+        }
+      ]
+    },
+    {
+      "category": "Toys",
+      "items": [
+        {
+          "name": "LEGO Classic Bricks",
+          "price": 134.99
+        },
+        {
+          "name": "Barbie Fashion Doll",
+          "price": 107.49
+        },
+        {
+          "name": "Hot Wheels 5-Pack",
+          "price": 101.99
+        },
+        {
+          "name": "NERF Elite Blaster",
+          "price": 113.25
+        },
+        {
+          "name": "UNO Card Game",
+          "price": 100.50
+        }
+      ]
+    }
+  ]
+}
